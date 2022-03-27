@@ -68,6 +68,8 @@ Route::group(['prefix' => 'user','middleware'=>['auth']],
         function() {
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index2'])->name('home2');
 
+   
+
 });
      route::resource('user/buku',BukuController::class);
      route::resource('admin/buku',BukuController::class);
@@ -76,7 +78,8 @@ Route::group(['prefix' => 'user','middleware'=>['auth']],
      route::resource('admin/users',UserController::class);
      route::resource('admin/peminjaman',PinjamController::class);
      route::resource('admin/petugas',PetugasController::class);
-     
+
+    
      
 
       Route::get('admin/dashboard', 'App\Http\Controllers\AdminController@dashboard', function () {

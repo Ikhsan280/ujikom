@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'display_name'=>'User Biasa'
         ]);
         $user = new User();
-        $user->name='Ikhsan Muhamad Ramadan';
+        $user->name='Ikhsan';
         $user->email='admin@gmail.com';
         $user->password = Hash::make('admin');
         $user->save();
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         $pengunjung = new user();
         $pengunjung->name='Ahmad';
         $pengunjung->email='petugas@gmail.com';
-        $pengunjung->password = Hash::make('pengguna');
+        $pengunjung->password = Hash::make('petugas');
         $pengunjung->save();
 
         // $pengunjung = new user();

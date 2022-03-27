@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\pinjam;
+use App\Models\user;
 use App\Models\anggota;
 use App\Models\Buku;
 use App\Models\Petugas;
@@ -19,10 +20,17 @@ class PinjamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pinjam = Pinjam::all();
-        return view('admin.peminjaman.index',compact('pinjam'));
+         $pinjam = pinjam::select("*");
+      
+            if ($request->has('view_deleted')) {
+                $pinjam = $pinjam->onlyTrashed();
+            }
+      
+            $pinjam = $pinjam->paginate(8);
+              
+            return view('admin.peminjaman.index', compact('pinjam'));
     }
 
 
@@ -35,9 +43,9 @@ class PinjamController extends Controller
     {
         $buku = Buku::all();
         $anggota = Anggota::all();
-        $petugas  = Petugas::all();
+        $pinjam  = User::all();
 
-        return view('admin.peminjaman.create', compact('buku','anggota','petugas'));
+        return view('admin.peminjaman.create', compact('buku','anggota','pinjam'));
     }
 
 
@@ -55,6 +63,7 @@ class PinjamController extends Controller
             'tanggal_kembali' => 'required',
             'buku_id' => 'required',
             'anggota_id' => 'required',
+            'users_id' => 'required',
           ]);
         
           $pinjam = new Pinjam;
@@ -63,13 +72,14 @@ class PinjamController extends Controller
           $pinjam->tanggal_kembali = $request->tanggal_kembali;
           $pinjam->buku_id = $request->buku_id;
           $pinjam->anggota_id = $request->anggota_id;
+          $pinjam->users_id = $request->users_id;
           $pinjam->save();
           $buku = Buku::find($request->buku_id);
           $buku->stok = $buku->stok - 1 ; 
           $buku->save();
         Alert::success('data Berhasil Ditambahkan');
           $buku->save();
-        return redirect()->route('peminjaman.index');
+          return redirect()->route('peminjaman.index');
 
     }
 
@@ -136,7 +146,37 @@ class PinjamController extends Controller
     {
         $pinjam = pinjam::find($id);
         $pinjam->delete() ;
-        alert::success('Mantap','Buku Telah Dikembalikan');
+        alert::success('Oke','Data telah dihapus');
         return redirect()->route('peminjaman.index');
+    }
+    public function delete($id)
+    {
+        Pinjam::find($id)->delete();
+  
+        return back();
+    }
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function restore($id)
+    {
+        Pinjam::withTrashed()->find($id)->restore();
+  
+        return back();
+    }  
+  
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function restoreAll()
+    {
+        Pinjam::onlyTrashed()->restore();
+  
+        return back();
     }
 }

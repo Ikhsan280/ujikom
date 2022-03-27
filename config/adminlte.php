@@ -253,23 +253,18 @@ return [
             'icon'  => 'fa fa-book',
         ],
         
-        [
-            'text' => 'Transaksi',
-            'icon' => 'far fa-fw fa-id-card',
-            'submenu' => 
-            [
+        
         [
             'text' => 'Peminjaman',
             'icon'  => 'far fa-chart-bar',
             'url'  => 'admin/peminjaman',
         ],
         [
-            'text' => 'Pengembalian',
+            'text' => 'pengembalian',
             'icon'  => 'far fa-chart-bar',
             'url'  => 'admin/pengembalian',
         ],
-    ],
-    ],
+    
         // [
         //     'text' => 'Pengembalian',
         //     'icon'  => 'far fa-chart-bar',

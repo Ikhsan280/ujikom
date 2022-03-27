@@ -13,6 +13,7 @@ class User extends Authenticatable
 {
     use LaratrustUserTrait;
     use HasApiTokens, HasFactory, Notifiable;
+    
 
     /**
      * The attributes that are mass assignable.
@@ -20,6 +21,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'user_id',
+        'name',
+        'email',
+        'password',
+    ];
+    protected $visible = [
+        'user_id',
         'name',
         'email',
         'password',
@@ -43,4 +51,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function pinjam()
+    {
+        return $this->hasMany('App\Models\Pinjam','users_id');
+     }
+     public static function boot()
+    {
+        parent::boot();
+        self::deleting(function($buku){
+            if($buku->pinjam->count() > 0){
+                Alert::error('Gagal!','Data tidak bisa dihapus');
+                return false;
+            }
+        });
+    }
 }

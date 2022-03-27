@@ -60,15 +60,24 @@
                                     <option value="{{$data->id}}">{{$data->nama_anggota}}</option>
                                 @endforeach
                             </select>
-
-
-                            @error('nama_petugas')
-
+                            @error('nama_anggota')
                             <span class="invalid-feedbaack" role="alert">
                                 <strong>{{$message}}</strong>
                             </span>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="">Nama Petugas</label>
+                            <select name="users_id" class="form-control @error('users_id') is-invalid @enderror" >
+                                @foreach($pinjam as $data)
+                                    <option value="{{$data->id}}">{{$data->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('buku_id')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         <div class="form-group right">
                             <button type="reset" class="btn btn-outline-danger">Reset</button>
                             <button type="submit" class="btn btn-outline-primary">Simpan</button>

@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Alert;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 
 class pinjam extends Model
 {
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     use HasFactory;
 
     protected $visible=['id_peminjam','tanggal_pinjam','tanggal_kembali','buku_id','anggota_id','petugas_id'];
@@ -34,11 +38,11 @@ class pinjam extends Model
         // melalui fk "authoe_id"
         return $this->belongsTo('App\Models\pengembalian','pengembalian_id');
     }
-    public function petugas()
+    public function users()
     {
         // data dari model "book" bisa dimiliki oleh model "author"
         // melalui fk "authoe_id"
-        return $this->belongsTo('App\Models\petugas','petugas_id');
+        return $this->belongsTo('App\Models\User','users_id');
 
     }
     // public function boot()
