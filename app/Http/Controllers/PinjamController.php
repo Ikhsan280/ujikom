@@ -20,17 +20,11 @@ class PinjamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-         $pinjam = pinjam::select("*");
-      
-            if ($request->has('view_deleted')) {
-                $pinjam = $pinjam->onlyTrashed();
-            }
-      
-            $pinjam = $pinjam->paginate(8);
-              
-            return view('admin.peminjaman.index', compact('pinjam'));
+         
+        $pinjam = Pinjam::all();
+        return view('admin.peminjaman.index', compact('pinjam'));
     }
 
 
@@ -64,6 +58,8 @@ class PinjamController extends Controller
             'buku_id' => 'required',
             'anggota_id' => 'required',
             'users_id' => 'required',
+            'users_id' => 'required',
+
           ]);
         
           $pinjam = new Pinjam;
@@ -149,34 +145,5 @@ class PinjamController extends Controller
         alert::success('Oke','Data telah dihapus');
         return redirect()->route('peminjaman.index');
     }
-    public function delete($id)
-    {
-        Pinjam::find($id)->delete();
-  
-        return back();
-    }
-  
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function restore($id)
-    {
-        Pinjam::withTrashed()->find($id)->restore();
-  
-        return back();
-    }  
-  
-    /**
-     * Write code on Method
-     *
-     * @return response()
-     */
-    public function restoreAll()
-    {
-        Pinjam::onlyTrashed()->restore();
-  
-        return back();
-    }
+    
 }

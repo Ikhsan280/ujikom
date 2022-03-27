@@ -26,10 +26,10 @@ class pengembalian extends Model
         // melalui fk "authoe_id"
         return $this->belongsTo('App\Models\Anggota','anggota_id');
     }
-    public function pinjams()
-    {
-        // data dari model "book" bisa dimiliki oleh model "author"
-        // melalui fk "authoe_id"
-        return $this->hasMany('App\Models\petugas','pinjam_id');
-    }
+    // public function pinjams()
+    // {
+    //     // data dari model "book" bisa dimiliki oleh model "author"
+    //     // melalui fk "authoe_id"
+    //     return $this->hasMany('App\Models\petugas','pinjam_id');
+    // }
 }

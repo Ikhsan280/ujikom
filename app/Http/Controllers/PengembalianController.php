@@ -48,6 +48,7 @@ class PengembalianController extends Controller
             'tanggal_peminjaman' => 'required',
             'tanggal_pengembalian' => 'required',
             'buku_id' => 'required',
+            'denda' => 'numeric',
             'anggota_id' => 'required',
           ]);
         $kembali = new Pengembalian;
@@ -55,6 +56,7 @@ class PengembalianController extends Controller
         $kembali->tanggal_peminjaman = $request->tanggal_peminjaman;
         $kembali->tanggal_pengembalian = $request->tanggal_pengembalian;
         $kembali->buku_id = $request->buku_id;
+        $kembali->denda = $request->denda;
         $kembali->anggota_id = $request->anggota_id;
 
         $buku = Buku::find($kembali->buku_id);

@@ -7,6 +7,7 @@ use App\Http\Controllers\AnggotaController;
 use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PinjamController;
+use App\Http\Controllers\LaporankController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\LaporanController;
 
@@ -61,6 +62,8 @@ Auth::routes(
         });
         Route::get('laporan', [LaporanController::class, 'pinjam'])->name('getPinjam');
      Route::post('laporan', [LaporanController::class, 'reportPinjam'])->name('reportPinjam');
+     Route::get('lapor', [LaporankController::class, 'pengembalian'])->name('getpengembalian');
+     Route::post('lapor', [LaporankController::class, 'reportPengembalian'])->name('reportpengembalian');
         });
 
 

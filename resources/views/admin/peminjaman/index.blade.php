@@ -29,8 +29,7 @@
                                 <th><i>Petugas</i></th>
                                 <th><i>Tanggal Pinjam</i></th>
                                 <th><i>Tanggal Kembali</i></th>
-                                <th><i>Durasi Pinjam</i></th>
-                                <th><i>Denda</i></th>
+                                
                                 <th><i>Action</i></th>
 
 
@@ -47,26 +46,7 @@
                                  <td>{{$data->tanggal_pinjam}}</td>
                                  <td>{{$data->tanggal_kembali}}</td>
 
-                                 <th>
-                                        <?php
-                                            $datetime2 = strtotime($data->tanggal_kembali) ;
-                                            $datenow = strtotime(date("Y-m-d"));
-                                            $durasi = ($datetime2 - $datenow) / 86400 ;
-                                        ?>
-                                        @if ($durasi < 0 )
-                                            Durasi Habis / {{ $durasi }} Hari
-                                        @else
-                                            {{ $durasi }} Hari
-                                        @endif
-                                    </th>
-                                    <th>
-                                        @if ($durasi < 0)
-                                            <?php $denda = abs($durasi) * 1000 ; ?>
-                                            {{ $denda }}
-                                        @else
-                                            0
-                                        @endif
-                                    </th>
+                                 
 
                                  <td>
                                     <a href="{{route('peminjaman.edit',$data->id)}}" class="btn btn-outline-info">Edit</a>

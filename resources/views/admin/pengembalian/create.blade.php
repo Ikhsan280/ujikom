@@ -37,15 +37,15 @@
                         </div>
                         
                        
-                        <!-- <div class="form-group">
+                         <div class="form-group">
                             <label for="">Masukan Denda</label>
-                            <input type="integer" name="denda" class="form-control @error('denda') is-invalid @enderror">
+                            <input type="numeric" name="denda" class="form-control @error('denda') is-invalid @enderror">
                              @error('denda')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div> -->
+                        </div>
                         <div class="form-group">
                             <label for="">Masukan nama Buku</label>
                             <select name="buku_id" class="form-control @error('kode_buku') is-invalid @enderror">

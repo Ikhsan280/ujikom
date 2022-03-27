@@ -292,9 +292,40 @@ return [
 
             [
                 'text' => 'Laporan',
-                'icon'  => 'far fa-chart-bar',
-                'url'  => 'admin/laporan',
-            ],
+                'icon' => 'fa fa-file',
+                'submenu' => [
+                    [
+                        'text' => 'Laporan Peminjaman',
+                        'url' => 'admin/laporan',
+                    ],
+                    [
+                        'text' => 'Laporan Pengembalian',
+                        'url' => 'admin/lapor',
+                    ],
+                            // [
+                            //     'text' => 'level_two',
+                            //     'url' => '#',
+                            // ],
+                            // [
+                            //     'text' => 'level_two',
+                            //     'url' => '#',
+                            //     'submenu' => [
+                            //         [
+                            //             'text' => 'level_three',
+                            //             'url' => '#',
+                            //         ],
+                            //         [
+                            //             'text' => 'level_three',
+                            //             'url' => '#',
+                            //         ],
+                            //     ],
+                            // ],
+                    ],
+                    // [
+                    //     'text' => 'level_one',
+                    //     'url' => '#',
+                    // ],
+                ],
             
         
         

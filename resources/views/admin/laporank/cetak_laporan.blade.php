@@ -15,37 +15,34 @@
               
 <br><br>
       <center>
-                    <h2>LAPORAN PEMINJAMAN</h2>
+                    <h2>LAPORAN PENGEMBALIAN</h2>
                 </center>
         <center>
                 <table class="table" border="1">
                     <thead>
                         <center>
                         <tr>
-                            <th><i>ID Peminjam</i></th>
-                            <th><i>Buku</i></th>
-                            <th><i>Anggota</i></th>
-                            <th><i>Petugas</i></th>
-                            <th><i>Tanggal Pinjam</i></th>
-                            <th><i>Tanggal Kembali</i></th>
+                            <th>No</th>
+                            <th>Tanggal Pinjam</th> 
+                            <th>Tanggal Pengembalian</th>
+                            <th>Nama Buku</th>
+                            <th>Nama Anggota</th>
+                            <th>Denda</th>
                             </tr>
                         </center>
                     </thead>
                     
                         <tbody>
                         @php $no=1; @endphp
-                        @foreach ($pinjam as $data)
+                        @foreach ($pengembalian as $data)
                             <center>
-                            <tr>
                                 <td>{{$no++}}</td>
+                                <td>{{$data->tanggal_peminjaman}}</td>
+                                <td>{{$data->tanggal_pengembalian}}</td>
                                 <td>{{$data->bukus->judul_buku}}</td>
                                 <td>{{$data->anggotas->nama_anggota}}</td>
-                                <td>{{$data->users->name}}</td>
-                                <td>{{$data->tanggal_pinjam}}</td>
-                                <td>{{$data->tanggal_kembali}}</td>
-                              
-                            
-                                </tr>
+                                <td>{{$data->denda}}</td>
+                                <td>
                             </center>
                             @endforeach
                         

@@ -15,23 +15,26 @@
             <div class="card">
                 <div class="card-header">
                     @include('layouts._flash')
-                   <b>Buku Yang Sedang Dipinjam</b>
+                   <b>Buku Yang Sudah dikembalikan</b>
                     <a href="{{route('pengembalian.create')}}" class="btn btn-sm btn-outline-primary float-right"><i>kembalikan Buku</i></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" id="kembali">
+                            <thead>
                             <tr>
                                 <th>No</th>
                                 <th>Tanggal Pinjam</th> 
                                 <th>Tanggal Pengembalian</th>
                                 <th>Nama Buku</th>
                                 <th>Nama Anggota</th>
-                                <th>Denda</th>
+                                    <th>Denda</th>
                                 <th>Aksi</th>
 
 
                             </tr>
+                        </thead>
+                        <tbody>
                             @php $no=1; @endphp
                             @foreach ($kembali as $data)
                              <tr>
@@ -40,24 +43,7 @@
                                  <td>{{$data->tanggal_pengembalian}}</td>
                                  <td>{{$data->bukus->judul_buku}}</td>
                                  <td>{{$data->anggotas->nama_anggota}}</td>
-
-                                    <?php
-                                        $datetime2 = strtotime($data->tanggal_pengembalian) ;
-                                        $datenow = strtotime(date("Y-m-d"));
-                                        $durasi = ($datetime2 - $datenow) / 86400 ;
-                                    ?>
-                                <th>
-                                    @if ($durasi < 0)
-                                        <?php $denda = abs($durasi) * 1000 ; ?>
-                                        {{ $denda }}
-                                    @else
-                                        0
-                                    @endif
-                                </th>
-
-
-
-
+                                 <td>{{$data->denda}}</td>
                                  <td>
                                      <form action="{{route('pengembalian.destroy',$data->id)}}" method="post">
                                         @method('delete')
@@ -66,6 +52,7 @@
                                         </form>
                                  </td>
                              </tr>
+                            </tbody>
                             @endforeach
                         </table>
                     </div>
@@ -80,9 +67,16 @@
 @endsection
 
 @section('css')
+<link rel="stylesheet" type="text/css" href="{{asset('DataTables/datatables.min.css')}}">
 
 @endsection
 
 @section('js')
+<script  type="text/javascript" src="{{asset('DataTables/datatables.min.js')}}"> </script>
+<script>
+    $(document).ready(function(){
+        $('#kembali').DataTable();
+    });
+</script>
 
 @endsection

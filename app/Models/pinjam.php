@@ -5,17 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Alert;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 
 class pinjam extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
     use HasFactory;
 
-    protected $visible=['id_peminjam','tanggal_pinjam','tanggal_kembali','buku_id','anggota_id','petugas_id'];
-    protected $fillable=['id_peminjam','tanggal_pinjam','tanggal_kembali','buku_id','anggota_id','petugas_id'];
+    protected $visible=['pinjam_id','id_peminjam','tanggal_pinjam','tanggal_kembali','buku_id','anggota_id','users_id'];
+    protected $fillable=['pinjam_id','id_peminjam','tanggal_pinjam','tanggal_kembali','buku_id','anggota_id','users_id'];
     public $timestamps =true;
 
     public function bukus()
